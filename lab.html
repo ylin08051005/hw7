@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      margin-bottom: 20px; /* Add some space between the title and the buttons */
+      text-align: center;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-around; /* Adjust alignment as needed */
+      background-color: #fefefe; /* Change the background color as needed */
+      padding: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .result {
+      font-size: 18px;
+      text-align: center;
+      margin-top: 10px; /* Add space between buttons and result */
+    }
+
+    /* Define colors for each button */
+    .button.button-first { background-color: #2891f3; }
+    .button.button-second { background-color: #f59024; }
+    .button.purple { background-color: #ce28f0e4; }
+    .button.green { background-color: #66dc98; }
+    .button.button-reset { background-color: #888887;}
+
+    /* Hover effect to scale up the buttons */
+    .button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Interactive Button</h1>
+
+  <div class="button-container">
+    <a href="#" class="button button-first" onclick="showFirstInput()">1st button</a>
+    <a href="#" class="button button-second" onclick="showSecondInput()">2nd button</a>
+    <a href="#" class="button purple" onclick="changeColors('#CC99FF')">Button 3</a>
+    <a href="#" class="button green" onclick="changeColors('#00CB65')">Button 4</a>
+    <a href="#" class="button button-reset" onclick="resetColors()">ResetBGColors</a>
+  </div>
+
+  <p class="result" id="result"></p>
+
+  <script>
+    function compareNumbers() {
+      let firstInput;
+      let secondInput;
+      const resultElement = document.getElementById('result');
+
+      // Loop until valid numeric inputs are provided
+      do {
+        firstInput = prompt('Enter the first number:');
+        secondInput = prompt('Enter the second number:');
+      } while (!isNumeric(firstInput) || !isNumeric(secondInput));
+
+            num1 = parseFloat(firstInput);
+            num2 = parseFloat(secondInput);
+
+      if (isNaN(num1) || isNaN(num2)) {
+        alert('Invalid input. Please enter valid numbers.');
+        return;
+      }
+
+      if (num1 > num2) {
+        changeColors('lightblue');
+        resultElement.textContent = `${num1} > ${num2}`;
+      } else if (num1 < num2) {
+        changeColors('orange');
+        resultElement.textContent = `${num1} < ${num2}`;
+      } else {
+        changeColors('lightyellow');
+        resultElement.textContent = `${num1} == ${num2}`;
+      }
+    }
+
+  function showFirstInput() {
+      if (num1 !== undefined) {
+        alert(`Your First Input : ${num1}`);
+      } else {
+        alert('You need to input values first.');
+      }
+    }
+
+    function showSecondInput() {
+      if (num2 !== undefined) {
+        alert(`Your Second Input : ${num2}`);
+      } else {
+        alert('You need to input values first.');
+      }
+    }
+
+    function isNumeric(value) {
+      return !isNaN(parseFloat(value)) && isFinite(value);
+    }
+
+    function changeColors(color) {
+      document.body.style.backgroundColor = color;
+      document.querySelector('.button-container').style.backgroundColor = color;
+    }
+
+    function resetColors() {
+      document.body.style.backgroundColor = ''; // Reset to default background color
+      document.querySelector('.button-container').style.backgroundColor = '#fefefe'; // Reset to default button container color
+      document.getElementById('result').textContent = 'Colors Reset';
+      alert('Background color reset.');
+    }
+
+    // Call compareNumbers directly when the page loads
+    window.onload = compareNumbers;
+  </script>
+
+</body>
+</html>
