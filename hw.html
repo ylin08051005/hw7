@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+
+    <style>
+        /* Add your CSS styles here */
+        p {
+            font-size: 30px; /* Adjust the font size as needed */
+            color: navy;    /* Change the text color if desired */
+            /* Add more styles as needed */
+        }
+    </style>
+
+    <script>
+        // Generate a random number between 1 and 10
+        var rand = Math.floor(Math.random() * 10) + 1;
+
+        // Use a while loop to keep prompting until the correct number is guessed
+        while (true) {
+            // Prompt the user to enter a number
+            var userGuess = prompt("(Number Guessing) Pick up a num between 1~10");
+
+            // Check if the user clicked Cancel or entered a valid number
+            if (userGuess === null) {
+                alert("Game canceled. The correct number was " + rand + ".");
+                break;
+            }
+
+            // Parse the user input as an integer
+            userGuess = parseInt(userGuess);
+
+            // Check if the guess is correct
+            if (userGuess === rand) {
+                alert("Congratulations! You guessed the correct number.");
+                break;
+            } else {
+                alert("Wrong guess. Try again!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>Hit F5 to play again</p>
+</body>
+</html>

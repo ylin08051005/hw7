@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Calculator</title>
+</head>
+<body>
+
+  <script>
+    // Function declarations for basic calculator operations
+    function add(num1, num2) {
+      return num1 + num2;
+    }
+
+    function subtract(num1, num2) {
+      return num1 - num2;
+    }
+
+    function multiply(num1, num2) {
+      return num1 * num2;
+    }
+
+    function divide(num1, num2) {
+      // Check for division by zero
+      if (num2 === 0) {
+        alert("Error: Division by zero!");
+        return "Undefined";
+      }
+      return num1 / num2;
+    }
+
+    // Function to take user input and perform the calculation
+    function calculate() {
+      // Get user input for the first number
+      let num1;
+      do {
+        num1 = parseFloat(prompt("Enter the first number:"));
+        if (isNaN(num1)) {
+          alert("Please enter a valid number.");
+        }
+      } while (isNaN(num1));
+
+      // Get user input for the second number
+      let num2;
+      do {
+        num2 = parseFloat(prompt("Enter the second number:"));
+        if (isNaN(num2)) {
+          alert("Please enter a valid number.");
+        }
+      } while (isNaN(num2));
+
+      // Get user input for the operation
+      let operation;
+      do {
+        operation = prompt("Choose an operation (+, -, *, /):");
+        if (!["+", "-", "*", "/"].includes(operation)) {
+          alert("Please choose +, -, *, or /.");
+        }
+      } while (!["+", "-", "*", "/"].includes(operation));
+
+      // Perform calculation based on the chosen operation
+      let result;
+      switch (operation) {
+        case "+":
+          result = add(num1, num2);
+          break;
+        case "-":
+          result = subtract(num1, num2);
+          break;
+        case "*":
+          result = multiply(num1, num2);
+          break;
+        case "/":
+          result = divide(num1, num2);
+          break;
+        default:
+          result = "Error: Invalid operation!";
+      }
+
+      // Display the result using alert
+      alert("Result: " + result);
+
+     // Ask if the user wants to perform another calculation
+     let continueCalculation;
+      do {
+        continueCalculation = prompt("Do you want to perform another calculation? (yes/no):").toLowerCase();
+        if (!["yes", "no"].includes(continueCalculation)) {
+          alert("Please enter 'yes' or 'no'.");
+        }
+      } while (!["yes", "no"].includes(continueCalculation));
+
+      if (continueCalculation === "yes") {
+        // Recursively call the calculate function to allow multiple calculations
+        calculate();
+      } else {
+        // If 'no' or invalid input, display a goodbye message
+        alert("Goodbye!");
+    }
+}
+    
+
+    // Call the calculate function to initiate the program
+    calculate();
+  </script>
+
+</body>
+</html>
